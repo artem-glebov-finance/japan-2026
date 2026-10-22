@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Япония, ноябрь 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,650&family=Golos+Text:wght@400;500&family=Shippori+Mincho+B1:wght@800&display=swap">
+<style>
+:root { --bg: #F4EFE5; --surface: #FFFCF6; --ink: #221F1A; --muted: #6A6358; --line: #E0D8C8; --accent: #B5361C; color-scheme: light }
+@media (prefers-color-scheme: dark) { :root { --bg: #14120F; --surface: #1D1A16; --ink: #ECE5D7; --muted: #A69D8D; --line: #342F28; --accent: #E8684A; color-scheme: dark } }
+* { box-sizing: border-box }
+html, body { height: 100% }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.5 "Golos Text", -apple-system, "Segoe UI", Roboto, sans-serif;
+  display: grid; place-items: center; padding-inline: 16px }
+.card { width: 100%; max-width: 340px; background: var(--surface); border: 1px solid var(--line); border-top: 3px solid var(--accent); border-radius: 6px; padding: 28px 24px; position: relative }
+.tr { display: flex; align-items: center; gap: 12px; margin: 6px 0 18px }
+.tr h1 { margin: 0 }
+.hanko { flex: none; display: grid; place-items: center; width: 46px; height: 46px; background: var(--accent); color: var(--surface); border-radius: 6px;
+  writing-mode: vertical-rl; font: 800 17px/1 "Shippori Mincho B1", "Hiragino Mincho ProN", serif; transform: rotate(-4deg);
+  box-shadow: inset 0 0 0 2px var(--accent), inset 0 0 0 4px color-mix(in srgb, var(--surface) 75%, transparent) }
+.eyebrow { font-size: 12px; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); margin: 0 }
+h1 { font-family: "Literata", Georgia, serif; font-weight: 650; font-size: 26px; line-height: 1.15; margin: 6px 0 18px }
+label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 6px }
+input[type=password] { width: 100%; font: 600 24px/1 ui-monospace, Menlo, monospace; letter-spacing: .5em; text-align: center;
+  padding: 12px 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--ink) }
+input:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+.row { display: flex; align-items: center; gap: 8px; margin-top: 12px; font-size: 13px; color: var(--muted) }
+button { width: 100%; margin-top: 16px; font: 500 15px "Golos Text", sans-serif; padding: 11px; border: 0; border-radius: 8px; background: var(--ink); color: var(--bg); cursor: pointer }
+button[disabled] { opacity: .6; cursor: progress }
+.err { color: var(--accent); font-size: 13px; min-height: 1.5em; margin: 10px 0 0 }
+</style>
+</head>
+<body>
+<form class="card" id="f" autocomplete="off">
+  <p class="eyebrow">План поездки</p>
+  <div class="tr"><span class="hanko" lang="ja" aria-hidden="true">紅葉</span><h1>Япония, ноябрь 2026</h1></div>
+  <label for="pin">PIN-код</label>
+  <input type="password" id="pin" inputmode="numeric" pattern="[0-9]*" maxlength="8" required autofocus>
+  <label class="row" for="rem"><input type="checkbox" id="rem" checked> запомнить на этом устройстве</label>
+  <button type="submit" id="go">Открыть</button>
+  <p class="err" id="err" role="alert"></p>
+</form>
+<script>
+const SALT = "Un790fOcRe5hf9nkme7LyQ==", IV = "boqpzAROXa1Fja9v", ITERS = 600000, CT = "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";
+const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+const KEY = "jp2026-pin";
+
+async function unlock(pin) {
+  const base = await crypto.subtle.importKey("raw", new TextEncoder().encode(pin), "PBKDF2", false, ["deriveKey"]);
+  const key = await crypto.subtle.deriveKey({ name: "PBKDF2", salt: b64(SALT), iterations: ITERS, hash: "SHA-256" },
+    base, { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
+  const zipped = await crypto.subtle.decrypt({ name: "AES-GCM", iv: b64(IV) }, key, b64(CT));
+  const html = await new Response(new Blob([zipped]).stream().pipeThrough(new DecompressionStream("gzip"))).text();
+  document.open(); document.write(html); document.close();
+}
+
+const f = document.getElementById("f"), pin = document.getElementById("pin"), err = document.getElementById("err"), go = document.getElementById("go");
+async function attempt(value, remember) {
+  go.disabled = true; go.textContent = "Открываю…"; err.textContent = "";
+  try {
+    try { sessionStorage.setItem(KEY, value); } catch (e) {}
+    if (remember) { try { localStorage.setItem(KEY, value); } catch (e) {} }
+    await unlock(value);
+  } catch (e) {
+    try { localStorage.removeItem(KEY); sessionStorage.removeItem(KEY); } catch (e2) {}
+    err.textContent = "Неверный PIN. Попробуйте ещё раз.";
+    go.disabled = false; go.textContent = "Открыть"; pin.value = ""; pin.focus();
+  }
+}
+f.addEventListener("submit", e => { e.preventDefault(); attempt(pin.value.trim(), document.getElementById("rem").checked); });
+let saved = null; try { saved = localStorage.getItem(KEY) || sessionStorage.getItem(KEY); } catch (e) {}
+if (saved) attempt(saved, true);
+</script>
+</body>
+</html>
